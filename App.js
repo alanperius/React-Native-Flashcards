@@ -9,8 +9,13 @@ import IconWithBadge from "./components/utils/IconWithBadge";
 import {Constants} from 'expo'
 import {purple, red, white} from './utils/colors'
 import {Tabs} from './components/utils/Tabs'
+import {Provider} from 'react-redux'
+import reducer from './redux/reducer'
+import {createStore} from 'redux'
+import middleware from './redux/middleware'
 
-function UddaciStatusBar({ backgroundColor, ...props}) {
+
+function FlashcardsStatusBar({ backgroundColor, ...props}) {
     return (
         <View style={{backgroundColor, height: Constants.statusBarHeight}}>
             <StatusBar translucent  backgroundColor={backgroundColor} {...props} />
@@ -42,10 +47,12 @@ const MainNavigator = createAppContainer(createStackNavigator({
 export default class App extends React.Component {
   render() {
     return (
+        <Provider store={createStore(reducer, middleware)}>
         <View style={{flex: 1}}>
-            <UddaciStatusBar backgroundColor={purple} barStyle="default" />
+            <FlashcardsStatusBar backgroundColor={purple} barStyle="default" />
             <MainNavigator />
         </View>
+        </Provider>
     );
   }
 }

@@ -1,15 +1,15 @@
 import React from 'react';
 import {createAppContainer, createBottomTabNavigator} from "react-navigation";
-import Cards from '../Cards'
-import AddCard from '../AddCard'
+import DeckList from '../DeckList/DeckList'
+import AddDeck from '../newDeck/AddDeck'
 import {Platform} from 'react-native'
 import {MaterialCommunityIcons, Ionicons} from '@expo/vector-icons'
 import {purple, red, white} from '../../utils/colors'
 
 export const Tabs = createAppContainer(createBottomTabNavigator(
             {
-                Cards: Cards,
-                AddCard: AddCard,
+                DeckList: DeckList,
+                AddDeck: AddDeck,
             },
             {
                 defaultNavigationOptions: ({ navigation }) => ({
@@ -19,13 +19,13 @@ export const Tabs = createAppContainer(createBottomTabNavigator(
                         let os = Platform.OS === 'ios' ? 'ios' : 'md';
                         // You can return any component that you like here! We usually use an
                         // icon component from react-native-vector-icons
-                        if (routeName === 'Cards') {
+                        if (routeName === 'DeckList') {
                             iconName =   `cards${focused ? '' : '-outline'}`;
                             // Sometimes we want to add badges to some icons.
                             // You can check the implementation below.
                             //IconComponent = HomeIconWithBadge;
                             return <MaterialCommunityIcons name={iconName} size={25} color={tintColor} />;
-                        } else if (routeName === 'AddCard') {
+                        } else if (routeName === 'AddDeck') {
                             iconName =   `${os}-add-circle${focused ? '' : '-outline'}`;
                             return <Ionicons name={iconName} size={25} color={tintColor} />;
                         }
