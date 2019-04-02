@@ -18,27 +18,24 @@ export const Container = styled.View`
   
 `
 export const ContainerCardsCount = styled.View`
-  flex-direction: row; 
+  justify-content: flex-start;
+  flex: 1;
+
 `
 export const ContainerArrow = styled.View`
-   background-color: red;
-   align-items: flex-end;
-   justify-content: center;
-}
+  flex-direction: row;
+  display: flex;
 `
 
 export const Title = styled.Text`
   font-weight: bold;
   color: ${purple};
 `
+
 export const CardsCount = styled.Text`
   margin-top: 6px;
   color: #9e9e9e;
 `
 
-export const Arrow = styled.View`
-  justify-content: flex-end;
-  background-color: red;
-  height: 10px;
-  width: 10px
-`
+
+

@@ -7,13 +7,14 @@ import {createAppContainer,
 import {FontAwesome, Ionicons} from '@expo/vector-icons'
 import IconWithBadge from "./components/utils/IconWithBadge";
 import {Constants} from 'expo'
-import {purple, red, white} from './utils/colors'
+import {black, purple, red, white} from './utils/colors'
 import {Tabs} from './components/utils/Tabs'
 import {Provider} from 'react-redux'
 import reducer from './redux/reducer'
 import {createStore} from 'redux'
 import middleware from './redux/middleware'
-
+import DeckDetail from './components/deckDetail/DeckDetail'
+import AddCard from './components/deckDetail/AddCard'
 
 function FlashcardsStatusBar({ backgroundColor, ...props}) {
     return (
@@ -33,15 +34,26 @@ const MainNavigator = createAppContainer(createStackNavigator({
             color: red
         }
     },
-    /*EntryDetail: {
-        screen: EntryDetail,
+    DeckDetail: {
+        screen: DeckDetail,
         navigationOptions: ({ navigation }) => ({
             headerTintColor: white,
+            title: 'Deck Details',
             headerStyle: {
                 backgroundColor: purple,
             },
         }),
-    }*/
+    },
+    AddCard: {
+        screen: AddCard,
+        navigationOptions: ({ navigation }) => ({
+            headerTintColor: white,
+            title: 'Add new Card',
+            headerStyle: {
+                backgroundColor: purple,
+            },
+        }),
+    }
 }));
 
 export default class App extends React.Component {

@@ -3,6 +3,7 @@ import {StyleSheet, Text, TextInput, View, TouchableOpacity, ToastAndroid} from 
 import {purple, white} from "../../utils/colors";
 import {connect} from "react-redux";
 import {handleAddDeck} from "../../redux/actions/decks";
+import {NavigationActions} from "react-navigation";
 
 
 class AddDeck extends Component {
@@ -17,12 +18,19 @@ class AddDeck extends Component {
         ToastAndroid.showWithGravity(
             this.state.deckName+
             ' deck was created with success! ',
-            ToastAndroid.SHORT,
+            ToastAndroid.LONG,
             ToastAndroid.CENTER,
         );
 
         this.setState(() => ({deckName: ''}))
+
+        //fix to return to main tab
+        this.toHome();
     }
+
+    toHome = () => {
+
+    };
 
     render() {
         return (

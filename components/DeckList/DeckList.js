@@ -1,24 +1,23 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import {StyleSheet, Text, View, TouchableOpacity, ScrollView } from 'react-native';
 import {connect} from 'react-redux'
-import {handleAllCards} from "../../redux/actions/decks";
+import {handleAllDecks} from "../../redux/actions/decks";
 import {purple, white} from "../../utils/colors";
 import Deck from './Deck'
+import DeckDetail from "../deckDetail/DeckDetail";
 
 class DeckList extends Component {
 
 
     componentDidMount = () => {
-        this.props.handleAllCards();
+        this.props.handleAllDecks();
     };
-
 
     render() {
         const {decks, loading} = this.props;
-        console.log("======================");
-        console.log(Object.values(decks));
+
         return (
-            <View style={styles.container}>
+            <ScrollView style={styles.container}>
                 <View style={styles.head}>
                     <Text style={styles.title}>
                         FlashCards
@@ -28,17 +27,24 @@ class DeckList extends Component {
                 <View>
                     {Object.values(decks).map((deck) => {
                         return (
-                            <View key={deck.id}>
+                            <View  key={deck.id}>
+                                <TouchableOpacity onPress={() => this.props.navigation.navigate(
+                                    'DeckDetail',
+                                    {
+                                        deck: deck
+                                    }
+                                )}>
+                                    <Deck id={deck.id} name={deck.title} cardsCount={deck.cards ? deck.cards.length : 0}/>
+                                </TouchableOpacity>
 
-                                <Deck id={deck.id} name={deck.title} cardsCount={deck.cards ? deck.cards.length : 0}/>
-                            </View>
+                            </View >
                         )
 
                     })}
                 </View>
 
 
-            </View>
+            </ScrollView>
         )
     }
 }
@@ -49,19 +55,11 @@ const mapStateToProps = state => {
         loading: state.loadingBar.default,
     }
 };
-export default connect(mapStateToProps, {handleAllCards})(DeckList);
+export default connect(mapStateToProps, {handleAllDecks})(DeckList);
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-    },
-    decks: {
-        /* height: 100,
-         backgroundColor: gray,
-         margin: 20,
-         borderRadius: 5,
-         justifyContent: 'center',
-         padding: 10*/
     },
     head: {
         backgroundColor: purple,
