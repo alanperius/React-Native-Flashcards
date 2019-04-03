@@ -63,10 +63,10 @@ export function handleAddCard(question, answer, idDeck ) {
 
         console.log("=========new Card=====");
         console.log(cardData);
-        console.log(idDeck.id);
+        console.log(idDeck);
 
         return addCardAPI(cardData, idDeck)
-            //.then(() => dispatch(addCard(cardData, idDeck)))
+            .then(() => dispatch(addCard(cardData, idDeck)))
             .catch(error => console.warn(error))
     }
 }
@@ -81,6 +81,8 @@ function delDeck(deck) {
 }
 
 export function handleDeleteDeck(deck) {
+    console.log("DELETE DECK")
+    console.log(deck)
     return (dispatch) => {
         return deleteDeck(deck.id)
             .then(() => dispatch(delDeck(deck)))

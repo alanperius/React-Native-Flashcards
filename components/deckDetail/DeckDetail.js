@@ -42,7 +42,9 @@ class DeckDetail extends Component {
     };
 
     render(){
-        const {id, timestamp, title, cards} = this.props.navigation.state.params.deck
+        const {id, timestamp, title, cards} = this.props.deck
+        console.log("=-===============================")
+        console.log(cards)
         return (
             <ScrollContainer>
                 <View style={styles.head}>
@@ -61,7 +63,7 @@ class DeckDetail extends Component {
                     <TouchableOpacity style={styles.btn} onPress={() => this.props.navigation.navigate(
                         'AddCard',
                         {
-                            deck: this.props.navigation.state.params.deck
+                            deck: this.props.deck
                         }
                     )}>
                     <Item>
@@ -74,7 +76,7 @@ class DeckDetail extends Component {
                         `Do you want to delete ${title}`,
                         [
                             {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-                            {text: 'OK', onPress: () => this.removeDeck(this.props.navigation.state.params.deck)},
+                            {text: 'OK', onPress: () => this.removeDeck(this.props.deck)},
                         ])}>
                     <Item>
                         <Ionicons name="md-trash" size={100} color={red} />
@@ -87,9 +89,11 @@ class DeckDetail extends Component {
         )
     }
 }
+const mapStateToProps = (state, {navigation}) => {
 
-const mapStateToProps = state => {
+    const {id} = navigation.state.params.deck
     return {
+        deck: state.decks[id],
         loading: state.loadingBar.default,
     }
 };

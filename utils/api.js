@@ -20,17 +20,15 @@ export function addDeckAPI (deck) {
 export function addCardAPI (card, idDeck) {
     return AsyncStorage.getItem(DECK_STORAGE_KEY)
         .then((results) => {
-            const decks = JSON.parse(results)
-            const deck = decks[idDeck]
+            const data = JSON.parse(results)
+            const deck = data[idDeck]
             deck.cards.push(card)
 
-            AsyncStorage.mergeItem(DECK_STORAGE_KEY, JSON.stringify({
+            return AsyncStorage.mergeItem(DECK_STORAGE_KEY, JSON.stringify({
                 [deck.id]: deck
             }))
         })
 }
-
-
 
 export function deleteDeck (key) {
     return AsyncStorage.getItem(DECK_STORAGE_KEY)

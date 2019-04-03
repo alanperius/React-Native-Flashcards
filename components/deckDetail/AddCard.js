@@ -25,8 +25,10 @@ class AddCard extends Component {
             answer: '',
         }))
 
-        //fix to return to main tab
-        //this.toHome();
+
+        this.props.navigation.navigate(
+            'DeckDetail',
+        )
     }
 
     render(){
@@ -53,7 +55,7 @@ class AddCard extends Component {
                     <TouchableOpacity
                         style = {styles.submitButton}
                         onPress = {
-                            () => this.addCard(this.state.question, this.state.answer, {id})
+                            () => this.addCard(this.state.question, this.state.answer, id)
                         }>
                         <Text style = {styles.submitButtonText}> Add Card </Text>
                     </TouchableOpacity>
