@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {StyleSheet, Text, View, TouchableOpacity, ScrollView } from 'react-native';
 import {connect} from 'react-redux'
 import {handleAllDecks} from "../../redux/actions/decks";
-import {purple, white} from "../../utils/colors";
+import {blue, purple, white} from "../../utils/colors";
 import Deck from './Deck'
 import DeckDetail from "../deckDetail/DeckDetail";
 
@@ -24,7 +24,7 @@ class DeckList extends Component {
                     </Text>
                 </View>
 
-                <View>
+                <View style={styles.containerDecks}>
                     {Object.values(decks).map((deck) => {
                         return (
                             <View  key={deck.id}>
@@ -61,6 +61,11 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
+    containerDecks: {
+        padding: 10,
+        backgroundColor: blue
+    },
+
     head: {
         backgroundColor: purple,
         justifyContent: 'center',

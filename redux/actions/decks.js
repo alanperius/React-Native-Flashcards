@@ -1,9 +1,10 @@
-import {addCardAPI, addDeckAPI, deleteDeck, getAllDecksAPI} from "../../utils/api";
+import {addCardAPI, addDeckAPI, deleteCardAPI, deleteDeck, getAllDecksAPI} from "../../utils/api";
 
 export const RECEIVE_DECKS = 'RECEIVE_DECKS';
 export const ADD_DECK = 'ADD_DECK';
 export const DELETE_DECK = 'DELETE_DECK';
 export const ADD_CARD = 'ADD_CARD';
+export const DELETE_CARD = 'DELETE_CARD';
 
 function receiveDecks(decks) {
     return {
@@ -73,19 +74,45 @@ export function handleAddCard(question, answer, idDeck ) {
 
 
 
-function delDeck(deck) {
+function delDeck(deckId) {
     return {
         type: DELETE_DECK,
-        deck
+        deckId
     }
 }
 
-export function handleDeleteDeck(deck) {
+export function handleDeleteDeck(deckId) {
     console.log("DELETE DECK")
-    console.log(deck)
+    console.log(deckId)
     return (dispatch) => {
-        return deleteDeck(deck.id)
-            .then(() => dispatch(delDeck(deck)))
+        return deleteDeck(deckId)
+            .then(() => dispatch(delDeck(deckId)))
             .catch(error => console.warn(error))
     }
 }
+
+function delCard(cardId, deckId) {
+    return {
+        type: DELETE_CARD,
+        cardId,
+        deckId
+    }
+}
+
+export function handleDeleteCard(cardId, deckId) {
+    console.log("DELETE CARD")
+    console.log(cardId)
+    console.log(deckId)
+    /*return (dispatch) => {
+        return dispatch(delCard(cardId, deckId))
+            .then(deleteCardAPI(cardId, deckId))
+    }*/
+    return (dispatch) => {
+        return deleteCardAPI(cardId, deckId)
+            .then(() => dispatch(delCard(cardId, deckId)))
+            .catch(error => console.warn(error))
+    }
+
+
+}
+

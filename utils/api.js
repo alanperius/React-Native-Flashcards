@@ -5,8 +5,8 @@ const CARD_STORAGE_KEY = 'Flashcards:Card'
 
 
 export function getAllDecksAPI () {
-    //clearAllDecks()
-    //setInitialData()
+    // clearAllDecks()
+    // setInitialData()
     return AsyncStorage.getItem(DECK_STORAGE_KEY)
         .then(JSON.parse)
 }
@@ -30,7 +30,21 @@ export function addCardAPI (card, idDeck) {
         })
 }
 
+export function deleteCardAPI (cardId, idDeck) {
+    return AsyncStorage.getItem(DECK_STORAGE_KEY)
+        .then((results) => {
+            const data = JSON.parse(results)
+            const deck = data[idDeck]
+            deck.cards = deck.cards.filter(card => card.id !== cardId)
+
+            return AsyncStorage.mergeItem(DECK_STORAGE_KEY, JSON.stringify({
+                [deck.id]: deck
+            }))
+        })
+}
+
 export function deleteDeck (key) {
+
     return AsyncStorage.getItem(DECK_STORAGE_KEY)
         .then((results) => {
             const data = JSON.parse(results)
@@ -93,31 +107,31 @@ export const initialData = {
                     {
                         question: 'What is a closure?',
                         answer: 'The combination of a function and the lexical environment within which that function was declared.',
-                        id: "0f0b21333165411e8d3079b3de009b9f",
+                        id: "0f0b21333165411e8d3079b3de009b9f1",
                         timestamp: 1548023761647
                     },
                     {
                         question: 'What is a closure?2',
                         answer: 'The combination of a function and the lexical environment within which that function was declared.',
-                        id: "0f0b21333165411e8d3079b3de009b9f",
+                        id: "0f0b21333165411e8d3079b3de009b9f2",
                         timestamp: 1548023761647
                     },
                     {
                         question: 'What is a closure?3',
                         answer: 'The combination of a function and the lexical environment within which that function was declared.',
-                        id: "0f0b21333165411e8d3079b3de009b9f",
+                        id: "0f0b21333165411e8d3079b3de009b9f3",
                         timestamp: 1548023761647
                     },
                     {
                         question: 'What is a closure?4',
                         answer: 'The combination of a function and the lexical environment within which that function was declared.',
-                        id: "0f0b21333165411e8d3079b3de009b9f",
+                        id: "0f0b21333165411e8d3079b3de009b9f4",
                         timestamp: 1548023761647
                     },
                     {
                         question: 'What is a closure?5',
                         answer: 'The combination of a function and the lexical environment within which that function was declared.',
-                        id: "0f0b21333165411e8d3079b3de009b9f",
+                        id: "0f0b21333165411e8d3079b3de009b9f5",
                         timestamp: 1548023761647
                     },
 

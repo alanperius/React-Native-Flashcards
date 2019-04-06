@@ -11,28 +11,38 @@ import {
     TextNew,
     TextDelete,
     CardsCount,
+    Box
 } from "./styles"
 import {MaterialCommunityIcons, MaterialIcons, Ionicons} from '@expo/vector-icons'
 import {connect} from "react-redux";
-import {handleDeleteDeck} from "../../redux/actions/decks";
-import {NavigationActions} from "react-navigation";
-
+import {handleDeleteDeck, handleDeleteCard} from "../../redux/actions/decks";
+import Card from './Card'
 
 
 
 class DeckDetail extends Component {
 
-    removeDeck = (deck) => {
-        this.props.handleDeleteDeck(deck)
-
+    removeDeck = (deckId) => {
+        console.log("deckIddeckId")
+        console.log(deckId)
+        this.props.handleDeleteDeck(deckId)
+        this.toHome()
         ToastAndroid.showWithGravity(
-            deck.title+
-            ' deck was deleted with success!!!!! ',
+            'Deck deleted Successfully!!!!! ',
             ToastAndroid.LONG,
             ToastAndroid.CENTER,
         );
 
-        this.toHome()
+    }
+
+    removeCard = (cardId, deckId) => {
+        this.props.handleDeleteCard(cardId, deckId)
+        ToastAndroid.showWithGravity(
+            'Card deleted Successfully!!!!! ',
+            ToastAndroid.LONG,
+            ToastAndroid.CENTER,
+        );
+
     }
 
     toHome = () => {
@@ -43,8 +53,7 @@ class DeckDetail extends Component {
 
     render(){
         const {id, timestamp, title, cards} = this.props.deck
-        console.log("=-===============================")
-        console.log(cards)
+
         return (
             <ScrollContainer>
                 <View style={styles.head}>
@@ -76,7 +85,7 @@ class DeckDetail extends Component {
                         `Do you want to delete ${title}`,
                         [
                             {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-                            {text: 'OK', onPress: () => this.removeDeck(this.props.deck)},
+                            {text: 'OK', onPress: () => this.removeDeck(id)},
                         ])}>
                     <Item>
                         <Ionicons name="md-trash" size={100} color={red} />
@@ -84,6 +93,20 @@ class DeckDetail extends Component {
                     </Item>
                     </TouchableOpacity>
                 </BodyCardDeck>
+
+                <Box>
+                    <Title>
+                        Cards
+                    </Title>
+                </Box>
+                {cards.map((card) => {
+                    return (
+                        <View style={styles.container}  key={card.id} >
+                            <Card id={card.id} answer={card.answer} question={card.question} timestamp={card.timestamp} onDelete={this.removeCard} deckId={id} />
+                        </View>
+                    )
+                })
+                }
 
             </ScrollContainer>
         )
@@ -98,7 +121,7 @@ const mapStateToProps = (state, {navigation}) => {
     }
 };
 
-export default connect(mapStateToProps, {handleDeleteDeck})(DeckDetail);
+export default connect(mapStateToProps, {handleDeleteDeck, handleDeleteCard})(DeckDetail);
 
 const styles = StyleSheet.create({
     container: {

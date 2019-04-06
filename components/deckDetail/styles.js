@@ -3,13 +3,8 @@ import {purple, red} from "../../utils/colors";
 
 export const ScrollContainer = styled.ScrollView`
  display: flex;
+ flex: 1;
 `;
-
-export const Box = styled.View`
-flex: 1;
-margin: 50px;
-text-align: center;
-`
 
 export const BodyQuiz = styled.View`
   padding: 16px;
@@ -47,6 +42,7 @@ export const StartQuiz = styled.Text`
 
 export const BodyCardDeck = styled.View`
   flex-direction: row;
+  flex: 1;
   display: flex;
 `;
 
@@ -80,4 +76,43 @@ export const TextDelete = styled.Text`
   text-align: center;
 `;
 
+export const Container = styled.View`
+  justify-content: center;
+  padding: 16px;
+  margin-bottom: 16px;
+  margin-left: 16px;
+  margin-right: 16px;
+  background-color: white;
+  border-radius: 3px;
+  min-height: 60px;
+  elevation: 4;
+  shadow-color: grey;
+  shadow-offset: 5px 5px;
+  shadow-opacity: 0.5;
+  shadow-radius: 10px;
+  
+`
+export const ContainerAnswer = styled.View`
+  flex-direction: row;
+  display: flex;
 
+`
+
+export const ContainerAnswerInside = styled.View`
+  justify-content: flex-start;
+  flex: 1;
+`
+
+export const Answer = styled.Text`
+  margin-top: 10px;
+  color: #9e9e9e;
+`
+
+export const Box = styled.View`
+flex: 1;
+margin: 30px 60px;
+padding: 10px;
+text-align: center;
+align-items: center;
+border-bottom-width: 1px;
+`
