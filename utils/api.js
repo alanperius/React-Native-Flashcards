@@ -2,14 +2,16 @@ import {AsyncStorage} from 'react-native'
 
 const DECK_STORAGE_KEY = 'Flashcards:Deck'
 
-export function getAllDecksAPI () {
-    let setData = false
-
-    if(setData === false){
-        clearAllDecks()
-        setInitialData()
-        setData = true
-    }
+export function getAllDecksAPI() {
+    AsyncStorage.getItem(DECK_STORAGE_KEY)
+        .then((results) => {
+            // console.log("------------------")
+            // console.log(results)
+            if(results === null || results === {} ){
+                setInitialData();
+            }
+        })
+    //clearAllDecks();
 
     return AsyncStorage.getItem(DECK_STORAGE_KEY)
         .then(JSON.parse)
@@ -63,9 +65,7 @@ export function clearAllDecks () {
 }
 
 export function setInitialData () {
-    let dummyData = initialData
-    AsyncStorage.setItem(DECK_STORAGE_KEY, JSON.stringify(dummyData))
-    return dummyData
+    return AsyncStorage.setItem(DECK_STORAGE_KEY, JSON.stringify(initialData))
 }
 
 export function fetchCardsResults() {

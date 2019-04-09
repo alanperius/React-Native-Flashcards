@@ -266,7 +266,6 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state, {navigation}) => {
-    console.log("=============");
     const {deck} = navigation.state.params;
     const deckCards = Object.values(deck.cards);
     const deckCardsId = [];
@@ -275,12 +274,9 @@ const mapStateToProps = (state, {navigation}) => {
         deckCardsId.push(card.id)
     });
 
-    console.log("342198u43298043209872438972430798409827342938074239807289743");
-    console.log(deckCardsId);
     const cardSequence = deckCardsId ? deckCardsId.sort(function (a, b) {
         return 0.5 - Math.random()
     }) : null;
-    console.log(cardSequence);
     return {
         deck: deck,
         cardSequence,

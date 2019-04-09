@@ -34,9 +34,6 @@ class RNConfetti extends Component {
                 <MaterialCommunityIcons name="emoticon-cool" size={70} />
                 <MaterialCommunityIcons name="emoticon-cool" size={70} />
             </View>
-            <TouchableOpacity onPress={() => this.props.navigation.goBack()} style={styles.dislike}>
-                <Text>Back</Text>
-            </TouchableOpacity>
         </View>
     }
 }
