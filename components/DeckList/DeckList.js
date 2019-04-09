@@ -2,9 +2,10 @@ import React, {Component} from 'react';
 import {StyleSheet, Text, View, TouchableOpacity, ScrollView } from 'react-native';
 import {connect} from 'react-redux'
 import {handleAllDecks} from "../../redux/actions/decks";
-import {blue, purple, white} from "../../utils/colors";
+import {blue, gray, gray2, purple, red, white} from "../../utils/colors";
 import Deck from './Deck'
 import DeckDetail from "../deckDetail/DeckDetail";
+import RNConfetti from '../utils/RNConfetti'
 
 class DeckList extends Component {
 
@@ -17,13 +18,13 @@ class DeckList extends Component {
         const {decks, loading} = this.props;
 
         return (
-            <ScrollView style={styles.container}>
+            <View >
                 <View style={styles.head}>
                     <Text style={styles.title}>
                         FlashCards
                     </Text>
                 </View>
-
+                <ScrollView>
                 <View style={styles.containerDecks}>
                     {Object.values(decks).map((deck) => {
                         return (
@@ -43,8 +44,8 @@ class DeckList extends Component {
                     })}
                 </View>
 
-
             </ScrollView>
+            </View>
         )
     }
 }
@@ -61,9 +62,11 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
+
     containerDecks: {
-        padding: 10,
-        backgroundColor: blue
+        paddingBottom: 100,
+        padding: 5
+
     },
 
     head: {

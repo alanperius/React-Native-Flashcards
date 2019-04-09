@@ -15,6 +15,8 @@ import {createStore} from 'redux'
 import middleware from './redux/middleware'
 import DeckDetail from './components/deckDetail/DeckDetail'
 import AddCard from './components/deckDetail/AddCard'
+import Quiz from './components/deckDetail/Quiz'
+
 
 function FlashcardsStatusBar({ backgroundColor, ...props}) {
     return (
@@ -31,7 +33,7 @@ const MainNavigator = createAppContainer(createStackNavigator({
             header: null,
         },
         tintColor: {
-            color: red
+            color: purple
         }
     },
     DeckDetail: {
@@ -49,6 +51,16 @@ const MainNavigator = createAppContainer(createStackNavigator({
         navigationOptions: ({ navigation }) => ({
             headerTintColor: white,
             title: 'Add new Card',
+            headerStyle: {
+                backgroundColor: purple,
+            },
+        }),
+    },
+    Quiz: {
+        screen: Quiz,
+        navigationOptions: ({ navigation }) => ({
+            headerTintColor: white,
+            title: 'Start a Quiz',
             headerStyle: {
                 backgroundColor: purple,
             },

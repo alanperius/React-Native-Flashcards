@@ -1,5 +1,5 @@
 import styled from "styled-components/native"
-import {purple, red} from "../../utils/colors";
+import {gray2, purple, red} from "../../utils/colors";
 
 export const ScrollContainer = styled.ScrollView`
  display: flex;
@@ -28,6 +28,12 @@ export const Title = styled.Text`
   font-weight: bold;
   color: ${purple};
   font-size: 20px
+`;
+
+export const NoCard = styled.Text`
+  font-weight: bold;
+  color: ${gray2};
+  font-size: 15px
 `;
 
 export const CardsCount = styled.Text`

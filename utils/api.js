@@ -1,12 +1,16 @@
 import {AsyncStorage} from 'react-native'
 
 const DECK_STORAGE_KEY = 'Flashcards:Deck'
-const CARD_STORAGE_KEY = 'Flashcards:Card'
-
 
 export function getAllDecksAPI () {
-    // clearAllDecks()
-    // setInitialData()
+    let setData = false
+
+    if(setData === false){
+        clearAllDecks()
+        setInitialData()
+        setData = true
+    }
+
     return AsyncStorage.getItem(DECK_STORAGE_KEY)
         .then(JSON.parse)
 }
