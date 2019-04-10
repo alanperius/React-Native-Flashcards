@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import {MaterialCommunityIcons, Ionicons} from '@expo/vector-icons'
 import Confetti from 'react-native-confetti';
-import {red} from "../../utils/colors";
+import {purple, red, white} from "../../utils/colors";
 
 class RNConfetti extends Component {
     componentDidMount() {
@@ -34,7 +34,8 @@ class RNConfetti extends Component {
                 <MaterialCommunityIcons name="emoticon-cool" size={70} />
                 <MaterialCommunityIcons name="emoticon-cool" size={70} />
             </View>
-        </View>
+
+            </View>
     }
 }
 export default RNConfetti;
@@ -60,6 +61,29 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         color: '#333333',
         marginBottom: 5,
+    },
+    contentLikeDislike: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginBottom: 5,
+        borderRadius: 20,
+        backgroundColor: white,
+        color: white,
+        padding: 5,
+        paddingLeft: 10,
+        paddingRight: 10,
+    },
+    submitButton: {
+        backgroundColor: purple,
+        padding: 10,
+        margin: 15,
+        height: 40,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    submitButtonText:{
+        color: 'white',
+
     }
 
 });

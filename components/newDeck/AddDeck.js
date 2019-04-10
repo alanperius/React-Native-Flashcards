@@ -13,7 +13,14 @@ class AddDeck extends Component {
     };
 
     addDeck = (name) => {
-        this.props.handleAddDeck(name)
+
+        const deckData = {
+            id: Date.now().toString(36) + Math.random().toString(36).substr(2, 5),
+            timestamp: Date.now(),
+            title: name,
+            cards: []
+        };
+        this.props.handleAddDeck(deckData)
 
         ToastAndroid.showWithGravity(
             this.state.deckName+
@@ -25,11 +32,16 @@ class AddDeck extends Component {
         this.setState(() => ({deckName: ''}))
 
         //fix to return to main tab
-        this.toHome();
+        this.toHome(deckData);
     }
 
-    toHome = () => {
-
+    toHome = (deckData) => {
+        this.props.navigation.navigate(
+            'DeckDetail',
+            {
+                deck: deckData
+            }
+        )
     };
 
     render() {

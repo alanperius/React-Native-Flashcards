@@ -21,6 +21,15 @@ class Quiz extends Component {
         }))
     };
 
+    restartQuiz = () => {
+        this.setState(() => ({
+            rightAnswers: 0,
+            cardIndex: 0,
+            showAnswer: false,
+            finished: false,
+        }))
+    };
+
     correctAnswer = () => {
         this.setState((state) => ({
             rightAnswers: state.rightAnswers + 1,
@@ -52,7 +61,7 @@ class Quiz extends Component {
             return (
                 <View style={styles.quiz}>
                     {total == 100 ?
-                        <RNConfetti/>
+                            <RNConfetti/>
                         :
                         <View style={styles.containerScore}>
                             <Text style={styles.score}> You scored {rightAnswers} out of {deckCards.length}</Text>
@@ -61,10 +70,17 @@ class Quiz extends Component {
                                 <Text style={styles.learn}>Learn more and try again!  </Text>
                             )}
                         </View>
-
-
                     }
+                    <View style={[styles.contentLikeDislike]}>
 
+                        <TouchableOpacity onPress={() => this.props.navigation.goBack()} style={styles.submitButton}>
+                            <Text style={styles.submitButtonText}>Back</Text>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity onPress={() =>this.restartQuiz()} style={styles.submitButton}>
+                            <Text style={styles.submitButtonText}>Restart Quiz</Text>
+                        </TouchableOpacity>
+                    </View>
 
                 </View>
             )
@@ -258,6 +274,15 @@ const styles = StyleSheet.create({
         color: red,
         margin: 5
     },
+    submitButton: {
+        backgroundColor: purple,
+        padding: 10,
+        margin: 15,
+        height: 40,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+
 });
 
 const mapStateToProps = (state, {navigation}) => {
