@@ -11,7 +11,7 @@ const Card = ({onDelete, id, answer, question, timestamp, deckId, ...rest }) => 
         <ContainerAnswer>
             <ContainerAnswerInside>
                 <Answer>
-                  Resposta
+                  A: {answer}
                 </Answer>
             </ContainerAnswerInside>
             <TouchableOpacity onPress={() => Alert.alert(

@@ -5,6 +5,7 @@ import {connect} from "react-redux";
 import {Ionicons} from '@expo/vector-icons';
 import FlipCard from 'react-native-flip-card'
 import RNConfetti from '../utils/RNConfetti'
+import {clearLocalNotification, setLocalNotification} from "../../utils/notification";
 
 class Quiz extends Component {
     state = {
@@ -32,7 +33,7 @@ class Quiz extends Component {
             this.setState(() => ({
                 finished: true,
             }))
-            //clearLocalNotification().then(setLocalNotification)
+            clearLocalNotification().then(setLocalNotification)
         } else {
             this.setState((state) => ({
                 showAnswer: false,
@@ -59,12 +60,6 @@ class Quiz extends Component {
                             {total < 60 && (
                                 <Text style={styles.learn}>Learn more and try again!  </Text>
                             )}
-                            <View style={[styles.contentLikeDislike]}>
-
-                                <TouchableOpacity onPress={() => this.props.navigation.goBack()} style={styles.dislike}>
-                                    <Text>Back</Text>
-                                </TouchableOpacity>
-                            </View>
                         </View>
 
 

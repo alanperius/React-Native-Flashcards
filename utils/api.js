@@ -1,20 +1,20 @@
 import {AsyncStorage} from 'react-native'
 
 const DECK_STORAGE_KEY = 'Flashcards:Deck'
+const FIRST_TIME_KEY = "Flashcards:firstTime"
 
-export function getAllDecksAPI() {
-    AsyncStorage.getItem(DECK_STORAGE_KEY)
-        .then((results) => {
-            // console.log("------------------")
-            // console.log(results)
-            if(results === null || results === {} ){
-                setInitialData();
-            }
-        })
-    //clearAllDecks();
+export async function getAllDecksAPI() {
+    const firstTime = await AsyncStorage.getItem('FIRST_TIME_KEY');
 
-    return AsyncStorage.getItem(DECK_STORAGE_KEY)
-        .then(JSON.parse)
+    if (firstTime === null) {
+        await AsyncStorage.setItem('FIRST_TIME_KEY', 'true');
+        setInitialData();
+    }
+    const unparsedDeck = await AsyncStorage.getItem(DECK_STORAGE_KEY)
+    const deck = JSON.parse(unparsedDeck)
+
+    return deck
+
 }
 
 export function addDeckAPI (deck) {
@@ -61,15 +61,13 @@ export function deleteDeck (key) {
 }
 
 export function clearAllDecks () {
+    AsyncStorage.removeItem(FIRST_TIME_KEY)
     return AsyncStorage.removeItem(DECK_STORAGE_KEY)
 }
 
 export function setInitialData () {
+    console.log("23409842531098742317089243108794213780942318790241309872413098723140879243198702431")
     return AsyncStorage.setItem(DECK_STORAGE_KEY, JSON.stringify(initialData))
-}
-
-export function fetchCardsResults() {
-    return AsyncStorage.getItem(DECK_STORAGE_KEY).then(formatCalendarResults)
 }
 
 

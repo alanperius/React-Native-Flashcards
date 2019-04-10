@@ -16,7 +16,7 @@ import middleware from './redux/middleware'
 import DeckDetail from './components/deckDetail/DeckDetail'
 import AddCard from './components/deckDetail/AddCard'
 import Quiz from './components/deckDetail/Quiz'
-
+import {setLocalNotification} from "./utils/notification";
 
 function FlashcardsStatusBar({ backgroundColor, ...props}) {
     return (
@@ -69,7 +69,11 @@ const MainNavigator = createAppContainer(createStackNavigator({
 }));
 
 export default class App extends React.Component {
-  render() {
+    componentDidMount() {
+        setLocalNotification()
+    }
+
+    render() {
     return (
         <Provider store={createStore(reducer, middleware)}>
         <View style={{flex: 1}}>

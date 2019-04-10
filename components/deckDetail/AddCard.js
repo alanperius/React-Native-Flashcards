@@ -34,7 +34,7 @@ class AddCard extends Component {
     render(){
         const {id, timestamp, title, cards} = this.props.navigation.state.params.deck
         return (
-                <Box>
+            <View>
                     <TextInput style = {styles.input}
                                underlineColorAndroid = "transparent"
                                placeholder = "Write a Question"
@@ -59,7 +59,7 @@ class AddCard extends Component {
                         }>
                         <Text style = {styles.submitButtonText}> Add Card </Text>
                     </TouchableOpacity>
-                </Box>
+            </View>
 
         )
     }
@@ -77,8 +77,9 @@ const styles = StyleSheet.create({
         height: 40,
         padding: 5,
         borderColor: purple,
-        borderWidth: 1
-    },
+        borderWidth: 1,
+
+},
     submitButton: {
         backgroundColor: purple,
         padding: 10,
