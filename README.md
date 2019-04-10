@@ -3,6 +3,7 @@ Android App created with react native
 
 This App Flashcards is an Android App created using React Native where you can create decks and cards to help you study.
 
+
 Installation:
 Clone this repository;
 
